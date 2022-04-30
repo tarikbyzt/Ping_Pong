@@ -19,7 +19,8 @@ public class LevelController : MonoBehaviour
     public GameObject finishLine;
     public int currentLevel;
     public float score;
-
+    
+    
     void Start()
     {
         Current = this;
@@ -39,15 +40,18 @@ public class LevelController : MonoBehaviour
 
     public void LoadNextLevel()
     {
-
-
-        SceneManager.LoadScene("Level " + (currentLevel + 1));
         if (currentLevel == 2)
         {
-            PlayerPrefs.SetInt("currentLevel", currentLevel + 1);
-            PlayerPrefs.DeleteAll();
-            SceneManager.LoadScene("Level 0");
+
+            PlayerPrefs.SetInt("currentLevel", currentLevel - 2);
+            currentLevel -= 2;
+            SceneManager.LoadScene("Level " + currentLevel);
         }
+        else
+        {
+            SceneManager.LoadScene("Level " + (currentLevel + 1));
+        }
+        
     }
 
     public void GameOver()
